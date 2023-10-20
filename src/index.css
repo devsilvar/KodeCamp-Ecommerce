@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: whitesmoke;
+  overflow: scroll;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  position: fixed;
+}
+
+@layer components {
+  .input-primary {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-[15px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-5 outline-none;
+  }
+}
