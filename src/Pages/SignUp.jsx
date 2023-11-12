@@ -177,12 +177,6 @@ const SignUp = () => {
               </p>
 
               <button
-                onClick={handleFirebase}
-                className="bg-green-500 text-white"
-              >
-                SUbmit to Firebase
-              </button>
-              <button
                 className="block mt-5 bg-purple-700 p-1 disabled:opacity-25 rounded-full"
                 type="button"
                 disabled={
