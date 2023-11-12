@@ -2,7 +2,12 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Mulli: ["Mulish", "sans-serif"],
+        Nunito: ["Nunito", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

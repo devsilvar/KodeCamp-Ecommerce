@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../Context/ShopContext";
-import { AiFillDelete } from "react-icons/ai";
-import { AiOutlineUserDelete } from "react-icons/ai";
-import { States } from "./Utils/Countries";
+import { States } from "../Utils/Countries";
 import { IoTrashBin } from "react-icons/io5";
-import { DeliveryPrice } from "./Utils/StateDelivery";
-import { DeliveryDate } from "./Utils/DeliveryDate";
+import { DeliveryPrice } from "../Utils/StateDelivery";
+import { DeliveryDate } from "../Utils/DeliveryDate";
 
-const Checkout = ({ Products }) => {
+const Checkout = () => {
   const [states, setstates] = useState(States);
   const [FormData, setFormData] = useState({
     fname: "",
@@ -197,7 +195,7 @@ const Checkout = ({ Products }) => {
           <h2 className="text-lg font-bold">Shipping</h2>
 
           <div>
-            {Products.map((item, index) => {
+            {Cart.Productss.map((item, index) => {
               if (Cart.getProductQuantity(item.id) > 0) {
                 return (
                   <div

@@ -1,56 +1,60 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import "./App.css";
-import Loader from "./Pages/Utils/Modal";
+import Loader from "./Components/Modal";
 import Navbar from "./Components/Navbar";
 import { Route, Routes } from "react-router-dom";
-import { States } from "./Pages/Utils/Countries";
-
+import { States } from "./Utils/Countries";
 import Home from "./Pages/Home";
 import ProductDetails from "./Pages/ProductDetails";
-import FetchClientData from "./Pages/Utils/FetchClientData";
+
 import Checkout from "./Pages/Checkout";
+import Login from "./Pages/Login";
+import { AuthContext } from "./Context/AuthContext";
+import SignUp from "./Pages/SignUp";
+import UserData from "./Pages/UserData";
+import { ShopContext } from "./Context/ShopContext";
 
 export const FetchClient = axios.create({
-  baseURL: "https://fakestoreapi.com/products",
+  baseURL: import.meta.env.VITE_PRODUCTS_LINK,
 });
 
 function App() {
-  const [Loading, setLoading] = useState(true);
-  const { Products, loading } = FetchClientData();
+  const { currentUser } = useContext(AuthContext);
+  const Cart = useContext(ShopContext);
+  //  const [Loading, setLoading] = useState(true);
+  // const { Products, loading } = FetchClientData();
   const [Product, setProduct] = useState([]);
   const [states, setstates] = useState(States);
 
-  // useEffect(() => {
-  //   FetchClient.get().then((res) => {
-  //     setProducts(res.data);
-  //     console.log(ProductItem());
-  //   });
-  // }, []);
-  console.log(states);
-
+  const requireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
+  };
+  // console.log(Loading);
+  console.log(Cart.Productss);
+  console.log(currentUser);
   return (
     <>
-      {loading ? (
+      {Cart.loading ? (
         <div className="mt-[300px]">
           <Loader />
         </div>
       ) : (
         <>
-          <Navbar Products={Products} />
+          <Navbar />
           <Routes>
-            <Route
-              path="/"
-              element={<Home Loading={Loading} Products={Products} />}
-            />
+            <Route path="/" element={<Home />} />
             <Route
               path="/ProductDetails/:productId"
-              element={<ProductDetails Product={Products} />}
+              element={<ProductDetails Product={Cart.Productss} />}
             />
             <Route
               path="/checkout"
-              element={<Checkout Products={Products} />}
+              element={<Checkout Product={Cart.Productss} />}
             />
+            <Route path="/userdata" element={<UserData />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </>
       )}

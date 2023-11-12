@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import ProductCard from "../Components/ProductCard";
+import { ShopContext } from "../Context/ShopContext";
 
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 
 export const reviewStars = (num) => {
   let stars = [];
@@ -20,33 +20,30 @@ export const reviewStars = (num) => {
   );
 };
 
-function Home({ Loading, Products, setLoading }) {
+function Home() {
+  const Cart = useContext(ShopContext);
+  if (!Cart) return undefined;
   return (
     <>
-      {!Loading ? (
-        <div className="text-3xl h-[50vh] text-center mx-auto">
-          {" "}
-          <h2> Loading... </h2>
+      {Cart.loading ? (
+        <div className="mt-[300px]">
+          <Loader />
         </div>
       ) : (
-        <>
-          <div className="pt-32">
-            <section className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4 w-4/5 mx-auto">
-              {Products.map((item, index) => {
-                return (
-                  <ProductCard
-                    data={item}
-                    {...item}
-                    reviewStars={reviewStars}
-                    key={index}
-                    Loading={Loading}
-                    setLoading={setLoading}
-                  />
-                );
-              })}
-            </section>
-          </div>
-        </>
+        <div className="pt-32">
+          <section className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4 md:w-3/5 lg:w-4/5 w-[90%] px-2s mx-auto">
+            {Cart.Productss.map((item, index) => {
+              return (
+                <ProductCard
+                  data={item}
+                  {...item}
+                  reviewStars={reviewStars}
+                  key={index}
+                />
+              );
+            })}
+          </section>
+        </div>
       )}
     </>
   );

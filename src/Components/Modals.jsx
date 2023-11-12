@@ -32,7 +32,7 @@ const Modals = ({ Products, setisOpen, isOpen }) => {
             {Products.map((item, index) => {
               if (Cart.getProductQuantity(item.id) > 0) {
                 return (
-                  <>
+                  <div key={index}>
                     <div
                       className=" flex gap-2 mx-auto mb-5 w-full justify-center items-center "
                       key={index}
@@ -68,7 +68,7 @@ const Modals = ({ Products, setisOpen, isOpen }) => {
                         </button>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               } else {
               }

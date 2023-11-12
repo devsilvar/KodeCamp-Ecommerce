@@ -1,9 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&family=Nunito:wght@400;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: whitesmoke;
+  background-color: rgb(228, 226, 226);
   overflow: scroll;
 }
 
@@ -18,3 +19,16 @@ body {
     @apply bg-gray-50 border border-gray-300 text-gray-900 text-[15px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-5 outline-none;
   }
 }
+
+
+.spinner-2 {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid white;
+  border-right-color: rgb(243, 6, 243);
+  animation: s2 1s infinite linear;
+}
+@keyframes s2 {to{transform: rotate(1turn)}}
+
+

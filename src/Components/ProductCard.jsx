@@ -7,17 +7,18 @@ const ProductCard = ({ data, reviewStars, Loading }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const Cart = useContext(ShopContext);
   let ProductQuantity = Cart.getProductQuantity(data.id);
   console.log(Cart.items);
   return (
     <div
-      className="bg-white card m-3 h-fit shadow-lg border-gray-300 rounded-lg"
+      className="bg-white card m-3 h-fit shadow-2xl border-gray-300 rounded-lg"
       key={data.id}
     >
       <div className="relative">
         <img
-          className="h-[300px] py-9 w-4/5 mx-auto"
+          className="h-[300px] py-9 w-4/5 mx-auto hover:scale-110 transition duration-300"
           src={data.image}
           alt={data.title}
         />
@@ -62,7 +63,7 @@ const ProductCard = ({ data, reviewStars, Loading }) => {
             ) : (
               <button
                 onClick={() => Cart.AddCart(data.id)}
-                className="bg-teal-800 flex my-4 items-end text-white py-2 px-4 text-sm lg:text-base  rounded-3xl"
+                className="bg-teal-800 hover:scale-110  transition-colors flex my-4 items-end text-white py-2 px-4 text-md lg:text-base  rounded-3xl"
               >
                 Add to Cart
               </button>
@@ -72,7 +73,7 @@ const ProductCard = ({ data, reviewStars, Loading }) => {
             <Link to={`/ProductDetails/${data.id}`}>
               <button
                 onClick={() => window.scrollTo(0, 0)}
-                className="bg-gray-200 flex my-4 items-end text-teal-600 lg:text-base text-sm py-2 px-4  rounded-3xl"
+                className="bg-gray-200 flex my-4 items-end text-teal-600 lg:text-base text-md py-2 px-4  rounded-3xl"
               >
                 More Details
               </button>

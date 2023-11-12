@@ -1,7 +1,9 @@
 import React from "react";
 import { useContext, createContext, useState, useEffect } from "react";
-import FetchClientData from "../Pages/Utils/FetchClientData";
-import { GetProduct } from "../Pages/Utils/GetProduct";
+
+import { GetProduct } from "../Utils/GetProduct";
+import { FetchClient } from "../App";
+import Loader from "../Components/Modal";
 
 export const ShopContext = createContext({
   items: [],
@@ -14,8 +16,30 @@ export const ShopContext = createContext({
 
 export const ShopProvider = ({ children }) => {
   const [CartProduct, setCartProduct] = useState([]);
-  const { Products } = FetchClientData();
+  const [Productss, setProductss] = useState([]);
+  const [loading, setloading] = useState(false);
+  const fetchApi = () => {
+    setloading(true);
+    FetchClient.get()
+      .then((res) => {
+        setProductss(res.data);
+        console.log("done");
+        setloading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setloading(false);
+      });
+  };
 
+  useEffect(() => {
+    fetchApi();
+    // return () => {
+    //   controller.abort();
+    // };
+  }, []);
+
+  console.log(Productss);
   //get the product Array
   function getProductQuantity(id) {
     let newArr = CartProduct.find((item) => item.id == id)?.quantity;
@@ -67,6 +91,13 @@ export const ShopProvider = ({ children }) => {
     }
   }
 
+  if (loading)
+    return (
+      <div className="mt-[300px]">
+        <Loader />
+      </div>
+    );
+
   function clearCart(id) {
     setCartProduct((cart) => cart.filter((item) => item.id !== id));
   }
@@ -80,13 +111,11 @@ export const ShopProvider = ({ children }) => {
   //   return total;
   // }
 
-
   function totalCart() {
-
     let total = 0;
     CartProduct.map((item) => {
       if (item.quantity > 0) {
-        let productData = Products.find(
+        let productData = Productss.find(
           (product) => product.id == Number(item.id)
         );
         console.log(productData);
@@ -103,6 +132,9 @@ export const ShopProvider = ({ children }) => {
     clearCart,
     totalCart,
     getProductQuantity,
+    Productss,
+    loading,
+    setloading,
   };
 
   return (
