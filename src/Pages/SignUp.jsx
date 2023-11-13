@@ -227,9 +227,9 @@ const SignUp = () => {
                   className=""
                 >
                   {passwordtoggle ? (
-                    <AiFillEyeInvisible className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
-                  ) : (
                     <AiFillEye className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
+                  ) : (
+                    <AiFillEyeInvisible className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
                   )}
                 </div>
               </div>

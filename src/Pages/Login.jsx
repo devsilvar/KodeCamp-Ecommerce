@@ -7,11 +7,13 @@ import { auth } from "../Config/Firebase";
 import Spinner from "../Components/Spinner";
 import { checkErrorMessage } from "../Utils/CheckErrorMsg";
 import { AuthContext } from "../Context/AuthContext";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
   const [Loader, setLoader] = useState(false);
+  const [passwordtoggle, setpasswordtoggle] = useState(false);
   const [error, seterror] = useState(false);
   const [ErrorMsg, setErrorMsg] = useState("");
   const [LogForm, setLogForm] = useState({ email: "", Password: "" });
@@ -69,17 +71,30 @@ const Login = () => {
             placeholder="Enter Your Email"
             className="border-2 border-gray-400 outline-none b-2 mb-2 w-full rounded-lg px-4 py-2"
           />
+
           <label htmlFor="First Name" className="block mb-1">
             Password
           </label>
-          <input
-            type="password"
-            value={LogForm.Password}
-            onChange={ChangeForm}
-            id="Password"
-            placeholder="••••••••••"
-            className="border-2 border-gray-400 outline-none b-2 mb-2 w-full rounded-lg px-4 py-2"
-          />
+          <div className="relative">
+            <input
+              type={passwordtoggle ? "text" : "password"}
+              value={LogForm.Password}
+              onChange={ChangeForm}
+              id="Password"
+              placeholder="••••••••••"
+              className="border-2 border-gray-400 outline-none b-2 mb-2 w-full rounded-lg px-4 py-2"
+            />
+            <div
+              onClick={() => setpasswordtoggle(!passwordtoggle)}
+              className=""
+            >
+              {passwordtoggle ? (
+                <AiFillEye className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
+              ) : (
+                <AiFillEyeInvisible className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
+              )}
+            </div>
+          </div>
           {error && <p className="text-red-700 text-sm"> {ErrorMsg}</p>}
 
           <p className="text-gray-700 text-xs cursor-pointer font-Mulli my-5">
