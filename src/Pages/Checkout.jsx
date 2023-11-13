@@ -1,11 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ShopContext } from "../Context/ShopContext";
 import { States } from "../Utils/Countries";
 import { IoTrashBin } from "react-icons/io5";
 import { DeliveryPrice } from "../Utils/StateDelivery";
 import { DeliveryDate } from "../Utils/DeliveryDate";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Config/Firebase";
+import { AuthContext } from "../Context/AuthContext";
 
 const Checkout = () => {
+  const [Data, setData] = useState([]);
+  const { currentUser } = useContext(AuthContext);
+  const [isChecekd, setisChecekd] = useState(false);
   const [states, setstates] = useState(States);
   const [FormData, setFormData] = useState({
     fname: "",
@@ -44,6 +50,43 @@ const Checkout = () => {
       FormData.number
     );
   };
+
+  const retriveUserData = async () => {
+    const docRef = doc(db, "users", currentUser.uid);
+    const docSnap = await getDoc(docRef);
+    let list = [];
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      //   list.push(docSnap.data());
+      setData([docSnap.data()]);
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  };
+
+  useEffect(() => {
+    retriveUserData();
+  }, []);
+
+  if (!Data[0]) return "Loading...";
+  const checkHandler = (e) => {
+    e.preventDefault();
+    setisChecekd(!isChecekd);
+    setFormData({
+      email: Data[0].email,
+      number: Data[0].number,
+    });
+    console.log(Data[0]);
+  };
+
+  // if (isChecekd) {
+  //   setFormData({
+  //     ...FormData,
+  //     email: Data[0].email,
+  //     number: Data[0].phoneNumber,
+  //   });
+  // }
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-6  lg:w-4/6  w-5/6 lg:gap-9 gap-2  mx-auto pt-24">
@@ -153,6 +196,13 @@ const Checkout = () => {
 
           <hr className="w-full mt-5 text-gray-700 border-gray-300" />
           <h2 className="text-2xl font-bold my-5">Your Contact Information</h2>
+
+          <input
+            type="checkbox"
+            aria-checked={isChecekd}
+            checked={isChecekd}
+            onChange={checkHandler}
+          />
           {/* <form action="" className="w-full"> */}
           <div className="mb-4">
             <label htmlFor="" className="block font-bold">

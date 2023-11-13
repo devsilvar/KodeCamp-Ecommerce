@@ -12,7 +12,6 @@ import {
   collection,
   addDoc,
   doc,
-  getDocs,
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
