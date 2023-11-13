@@ -16,9 +16,11 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db, auth } from "../Config/Firebase";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [passwordtoggle, setpasswordtoggle] = useState(false);
   const [SignUpSection, setSignUpSection] = useState(false);
   const [Loader, setLoader] = useState(false);
   const [Password, setPassword] = useState({ value: true, toggle: true });
@@ -210,30 +212,33 @@ const SignUp = () => {
               <label htmlFor="Last Name" className="block mb-1">
                 Password
               </label>
-              <input
-                type={Password.value ? "password" : "text"}
-                id="Password1"
-                value={form.Password1}
-                onChange={ChangeForm}
-                placeholder="••••••••••"
-                className="border-2 border-gray-400 outline-none mb-3 b-2 w-full rounded-lg px-4 py-2"
-              />
-              <i
-                toggle="#password-field"
-                onClick={togglePassword}
-                type="text"
-                className={
-                  Password.toggle
-                    ? "fa fa-fw fa-eye field-icon toggle-password pe-4"
-                    : "fa fa-fw fa-eye-slash field-icon toggle-password pe-4"
-                }
-              ></i>
+              <div className="relative">
+                <input
+                  type={passwordtoggle ? "text" : "password"}
+                  id="Password1"
+                  value={form.Password1}
+                  onChange={ChangeForm}
+                  placeholder="••••••••••"
+                  className="border-2 border-gray-400 outline-none mb-3 b-2 w-full rounded-lg px-4 py-2"
+                />
 
-              <label htmlFor="Email" className="block mb-1">
-                Email
+                <div
+                  onClick={() => setpasswordtoggle(!passwordtoggle)}
+                  className=""
+                >
+                  {passwordtoggle ? (
+                    <AiFillEyeInvisible className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
+                  ) : (
+                    <AiFillEye className="text-purple-700 text-3xl top-2 me-2 right-0 absolute" />
+                  )}
+                </div>
+              </div>
+
+              <label htmlFor="Password" className="block mb-1">
+                Confirm Password
               </label>
               <input
-                type={Password.value ? "password" : "text"}
+                type={passwordtoggle ? "text" : "password"}
                 id="Password2"
                 value={form.Password2}
                 onChange={ChangeForm}
