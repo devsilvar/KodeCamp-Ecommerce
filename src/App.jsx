@@ -26,15 +26,14 @@ function App() {
   const Cart = useContext(ShopContext);
   //  const [Loading, setLoading] = useState(true);
   // const { Products, loading } = FetchClientData();
-  const [Product, setProduct] = useState([]);
-  const [states, setstates] = useState(States);
+  // const [Product, setProduct] = useState([]);
+  // const [states, setstates] = useState(States);
 
   const RequireAuth = ({ children }) => {
     return currentUser ? (
       children
     ) : (
       <>
-       
         <Navigate to="/login" />{" "}
       </>
     );
@@ -67,7 +66,7 @@ function App() {
                 </RequireAuth>
               }
             />
-            <Route path="/userdata" element={<UserData />} />
+            {/* <Route path="/userdata" element={<UserData />} /> */}
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
