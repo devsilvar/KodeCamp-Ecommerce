@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";
 import { States } from "../Utils/Countries";
 import { IoTrashBin } from "react-icons/io5";
@@ -9,6 +10,7 @@ import { db } from "../Config/Firebase";
 import { AuthContext } from "../Context/AuthContext";
 
 const Checkout = () => {
+  const navigate = useNavigate();
   const [Data, setData] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const [isChecekd, setisChecekd] = useState(false);
@@ -66,7 +68,14 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+    // if (currentUser) {
     retriveUserData();
+    // } else {
+    //   navigate("/Login");
+    //   setTimeout(() => {
+    //     alert("You need to Login To Purchase Any product");
+    //   }, 1000);
+    // }
   }, []);
 
   if (!Data[0]) return "Loading...";

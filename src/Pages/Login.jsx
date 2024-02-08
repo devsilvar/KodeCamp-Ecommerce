@@ -1,12 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ValidateEmail } from "../Utils/ValidateEmail";
 import { Toaster } from "react-hot-toast";
 import { auth } from "../Config/Firebase";
+import { ToastContainer, toast } from "react-toastify";
 import Spinner from "../Components/Spinner";
 import { checkErrorMessage } from "../Utils/CheckErrorMsg";
 import { AuthContext } from "../Context/AuthContext";
+
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
@@ -25,6 +27,14 @@ const Login = () => {
   const checkForm = () => {
     return ValidateEmail(LogForm.email) && LogForm.Password.length != 0;
   };
+
+  useEffect(() => {
+    {
+      setTimeout(() => {
+        toast("You Need to Login To Purchase a Products");
+      }, 2000);
+    }
+  }, []);
 
   const handleLogin = (e) => {
     seterror(false);
@@ -45,6 +55,9 @@ const Login = () => {
 
         setLoader(false);
         console.log(error.code);
+        if (error.code == "auth/wrong-password") {
+          toast.error("Invalid Password");
+        }
       });
     console.log(LogForm);
   };
@@ -52,6 +65,7 @@ const Login = () => {
   return (
     <section className="bg-light-gray pt-24">
       <Toaster />
+      <ToastContainer />
       <div className="lg:w-1/4 w-[90%] mx-auto shadow-2xl bg-white p-5">
         <h2 className="text-2xl font-semibold">Register A new Account</h2>
 

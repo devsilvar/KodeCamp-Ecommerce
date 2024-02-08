@@ -1,10 +1,14 @@
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../Config/Firebase";
 import { AuthContext } from "../Context/AuthContext";
 const UserData = () => {
   const [Data, setData] = useState([]);
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  if (!currentUser) navigate("//Login");
 
   const retriveUserData = async () => {
     const docRef = doc(db, "users", currentUser.uid);
