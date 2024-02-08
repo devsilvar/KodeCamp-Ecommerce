@@ -31,8 +31,8 @@ const Login = () => {
   useEffect(() => {
     {
       setTimeout(() => {
-        toast("You Need to Login To Purchase a Products");
-      }, 2000);
+        alert("You Need to Login To Purchase a Products");
+      }, 1000);
     }
   }, []);
 
