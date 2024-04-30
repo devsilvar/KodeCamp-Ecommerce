@@ -1,0 +1,10 @@
+/* main.hero-section {
+  color: black;
+  background-color: aqua;
+  display: flex;
+  height: 600px;
+} */
+
+.hero-section div {
+  z-index: 3;
+}

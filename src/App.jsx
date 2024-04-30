@@ -16,6 +16,7 @@ import UserData from "./Pages/UserData";
 import { ShopContext } from "./Context/ShopContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Components/Footer";
 
 export const FetchClient = axios.create({
   baseURL: import.meta.env.VITE_PRODUCTS_LINK,
@@ -71,6 +72,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
           </Routes>
           <ToastContainer />
+          <Footer />
         </>
       )}
     </>

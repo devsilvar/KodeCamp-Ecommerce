@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import RotatingCircleLoader from "react-loaders-kit/lib/rotatingCircle/RotatingCircleLoader";
 
 const Loader = ({}) => {

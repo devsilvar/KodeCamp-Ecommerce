@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ValidateEmail } from "../Utils/ValidateEmail";
@@ -18,6 +18,7 @@ const Login = () => {
   const [passwordtoggle, setpasswordtoggle] = useState(false);
   const [error, seterror] = useState(false);
   const [ErrorMsg, setErrorMsg] = useState("");
+  const InputRef = useRef(null);
   const [LogForm, setLogForm] = useState({ email: "", Password: "" });
 
   function ChangeForm(e) {
@@ -29,6 +30,7 @@ const Login = () => {
   };
 
   useEffect(() => {
+    InputRef.current.focus();
     {
       setTimeout(() => {
         alert("You Need to Login To Purchase a Products");
