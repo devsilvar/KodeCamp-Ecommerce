@@ -4,6 +4,5 @@ export const NavbarLinksNoAuth = [
 ];
 
 export const NavbarLinksAuth = [
-  { name: "Your Data", path: "/userdata" },
   { name: "Sign Out", path: "/signout" },
 ];

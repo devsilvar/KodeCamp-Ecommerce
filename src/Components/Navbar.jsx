@@ -82,15 +82,6 @@ const Navbar = () => {
                     {' '}
                     Sign Out
                   </button>
-                  <div className='relative px-5'>
-                    <PiShoppingCartFill
-                      className='text-teal-600 text-4xl'
-                      onClick={() => setisOpen(!isOpen)}
-                    />
-                    <div className='top-0 right-0 text-center absolute w-5 text-xs h-5 bg-teal-900 text-white p-1 flex justify-center items-center ms-auto rounded-full'>
-                      <p>{ProductCount}</p>
-                    </div>
-                  </div>
                 </>
               ) : (
                 <>
@@ -109,6 +100,15 @@ const Navbar = () => {
                   </button>
                 </>
               )}
+              <div className='relative px-5'>
+                <PiShoppingCartFill
+                  className='text-teal-600 text-4xl'
+                  onClick={() => setisOpen(!isOpen)}
+                />
+                <div className='top-0 right-0 text-center absolute w-5 text-xs h-5 bg-teal-900 text-white p-1 flex justify-center items-center ms-auto rounded-full'>
+                  <p>{ProductCount}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
