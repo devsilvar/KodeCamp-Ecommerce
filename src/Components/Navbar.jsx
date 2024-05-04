@@ -72,7 +72,7 @@ const Navbar = () => {
           </Link>
 
           <div className='flex items-center '>
-            <div className='lg:flex md:flex gap-4 mx-5 hidden'>
+            <div className='lg:flex md:flex gap-4 mx-5 hidden items-center'>
               {currentUser ? (
                 <>
                   <button
@@ -82,6 +82,15 @@ const Navbar = () => {
                     {' '}
                     Sign Out
                   </button>
+                  <div className='relative px-5'>
+                    <PiShoppingCartFill
+                      className='text-teal-600 text-4xl'
+                      onClick={() => setisOpen(!isOpen)}
+                    />
+                    <div className='top-0 right-0 text-center absolute w-5 text-xs h-5 bg-teal-900 text-white p-1 flex justify-center items-center ms-auto rounded-full'>
+                      <p>{ProductCount}</p>
+                    </div>
+                  </div>
                 </>
               ) : (
                 <>
@@ -100,13 +109,6 @@ const Navbar = () => {
                   </button>
                 </>
               )}
-            </div>
-            <PiShoppingCartFill
-              className='text-teal-600 text-4xl'
-              onClick={() => setisOpen(!isOpen)}
-            />
-            <div className=' text-center w-5 text-xs h-5 bg-teal-900 text-white p-1 flex justify-center items-center rounded-full'>
-              <p>{ProductCount}</p>
             </div>
           </div>
         </div>
