@@ -70,8 +70,8 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    loading == false && alert('not ready');
-    if (!Data[0]) return 'Loading...';
+    // loading == false && alert('not ready');
+    if (!Data[0] == null) return 'Loading...';
     retriveUserData();
   }, []);
 

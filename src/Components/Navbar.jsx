@@ -114,11 +114,21 @@ const Navbar = () => {
         </div>
 
         {/* small Nav */}
-        <motion.div className='pe-4 lg:hidden md:hidden'>
+        <motion.div className='pe-4 flex items-center gap-3 lg:hidden md:hidden '>
           <FaBars
             className='text-3xl'
             onClick={() => setisMenuOpen(!isMenuOpen)}
           />
+
+          <div className='relative px-5'>
+            <PiShoppingCartFill
+              className='text-teal-600 text-4xl'
+              onClick={() => setisOpen(!isOpen)}
+            />
+            <div className='top-0 right-0 text-center absolute w-5 text-xs h-5 bg-teal-900 text-white p-1 flex justify-center items-center ms-auto rounded-full'>
+              <p>{ProductCount}</p>
+            </div>
+          </div>
         </motion.div>
 
         {isMenuOpen ? (
