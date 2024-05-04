@@ -30,7 +30,8 @@ const UserData = () => {
   if (!Data[0]) return 'Loading...';
 
   return (
-    <section className='pt-32'>
+    <section className='pt-0'>
+      <h2 align='center'>Your Data</h2>
       <div className='w-4/6 h-3/4 mx-auto bg-white font-Nunito '>
         {Data[0].firstName ? (
           <>

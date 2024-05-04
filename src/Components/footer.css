@@ -2,7 +2,9 @@ footer {
   background-color: black;
   padding: 20px;
   width: 100%;
-  height: 30vh;
+  margin-top: 10vh;
+  margin-bottom: 0vh;
+  height: 10vh;
   color: white;
   text-align: center;
 }

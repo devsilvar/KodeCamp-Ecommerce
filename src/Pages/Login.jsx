@@ -20,6 +20,7 @@ const Login = () => {
   const [ErrorMsg, setErrorMsg] = useState('');
   const InputRef = useRef(null);
   const [LogForm, setLogForm] = useState({ email: '', Password: '' });
+  const [rendered, setrendered] = useState(false);
 
   function ChangeForm(e) {
     setLogForm({ ...LogForm, [e.target.id]: e.target.value });
@@ -30,11 +31,14 @@ const Login = () => {
   };
 
   useEffect(() => {
+    setrendered(!rendered);
     InputRef.current.focus();
-    {
-      setTimeout(() => {
-        alert('You Need to Login To Purchase a Products');
-      }, 1000);
+    if (rendered) {
+      {
+        setTimeout(() => {
+          alert('You Need to Login To Purchase a Products');
+        }, 1000);
+      }
     }
   }, []);
 
@@ -65,7 +69,7 @@ const Login = () => {
   };
 
   return (
-    <section className='bg-light-gray pt-24'>
+    <section className='bg-light-gray pt-28'>
       <Toaster />
       <ToastContainer />
       <div className='lg:w-1/4 w-[90%] mx-auto shadow-2xl bg-white p-5'>
