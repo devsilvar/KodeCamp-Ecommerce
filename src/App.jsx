@@ -1,22 +1,22 @@
-import { useState, useContext } from "react";
-import axios from "axios";
-import "./App.css";
-import Loader from "./Components/Modal";
-import Navbar from "./Components/Navbar";
-import { Route, Routes, Navigate } from "react-router-dom";
-import { States } from "./Utils/Countries";
-import Home from "./Pages/Home";
-import ProductDetails from "./Pages/ProductDetails";
+import { useState, useContext } from 'react';
+import axios from 'axios';
+import './App.css';
+import Loader from './Components/Modal';
+import Navbar from './Components/Navbar';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { States } from './Utils/Countries';
+import Home from './Pages/Home';
+import ProductDetails from './Pages/ProductDetails';
 
-import Checkout from "./Pages/Checkout";
-import Login from "./Pages/Login";
-import { AuthContext } from "./Context/AuthContext";
-import SignUp from "./Pages/SignUp";
-import UserData from "./Pages/UserData";
-import { ShopContext } from "./Context/ShopContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Footer from "./Components/Footer";
+import Checkout from './Pages/Checkout';
+import Login from './Pages/Login';
+import { AuthContext } from './Context/AuthContext';
+import SignUp from './Pages/SignUp';
+import UserData from './Pages/UserData';
+import { ShopContext } from './Context/ShopContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Components/Footer';
 
 export const FetchClient = axios.create({
   baseURL: import.meta.env.VITE_PRODUCTS_LINK,
@@ -35,7 +35,7 @@ function App() {
       children
     ) : (
       <>
-        <Navigate to="/login" />{" "}
+        <Navigate to='/login' />{' '}
       </>
     );
   };
@@ -45,7 +45,7 @@ function App() {
   return (
     <>
       {Cart.loading ? (
-        <div className="mt-[300px]">
+        <div className='mt-[300px]'>
           <Loader />
         </div>
       ) : (
@@ -53,23 +53,23 @@ function App() {
           <Navbar />
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path='/' element={<Home />} />
             <Route
-              path="/ProductDetails/:productId"
+              path='/ProductDetails/:productId'
               element={<ProductDetails Product={Cart.Productss} />}
             />
             <Route
-              path="/checkout"
+              path='/checkout'
               element={
                 <RequireAuth>
-                  {" "}
+                  {' '}
                   <Checkout Product={Cart.Productss} />
                 </RequireAuth>
               }
             />
             {/* <Route path="/userdata" element={<UserData />} /> */}
-            <Route path="/Login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
           </Routes>
           <ToastContainer />
           <Footer />
