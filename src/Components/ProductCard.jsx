@@ -10,7 +10,7 @@ const ProductCard = ({ data, reviewStars, Loading }) => {
 
   const Cart = useContext(ShopContext);
   let ProductQuantity = Cart.getProductQuantity(data.id);
-  console.log(Cart.items);
+
   return (
     <div
       className="bg-white card m-3 h-fit shadow-2xl border-gray-300 rounded-lg"

@@ -66,7 +66,7 @@ const Navbar = () => {
               <img src={Logo} width={40} className='h-[35px]' alt='Logo' />{' '}
               <span className='inline-flex gap-1 font-Nunito font-bold'>
                 {' '}
-                <span> Thrift</span> Shop{' '}
+                <span className='font-Nunito'> Thrift</span> Shop{' '}
               </span>
             </div>
           </Link>
